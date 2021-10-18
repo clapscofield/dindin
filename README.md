@@ -6,8 +6,11 @@ Mais detalhes - BACKLOG e QUADRO DA SPRINT DISPONÍVEL EM: (criar link de backlo
 
 ## Equipe:
 Clarisse Scofield Lenzoni
+
 André Carmo
+
 Guilherme
+
 Matheus
 
 ## Demanda
