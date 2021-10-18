@@ -6,9 +6,9 @@ Mais detalhes - BACKLOG e QUADRO DA SPRINT DISPONÍVEL EM: (criar link de backlo
 
 ## Equipe:
 Clarisse Scofield Lenzoni <br/>
-André Carmo <br/>
+André Araújo Santos Carmo | 2017023110 <br/>
 Guilherme <br/>
-Matheus <br/>
+Matheus Henrique Antunes Lima | 2017023153 <br/>
 
 ## Demanda
 Com o surgimento de tantos bancos digitais, o controle financeiro se tornou cada vez mais digitalizado. Apesar disso, nota-se muita dificuldade da organização e planejamento de gastos em apenas um só lugar, de forma centralizada e não dispersa entre diversos apps. 
