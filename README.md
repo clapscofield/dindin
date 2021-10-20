@@ -25,7 +25,7 @@ Desenvolver um sistema para facilitar o controle financeiro de usuários que nã
 - Inserir diferentes bancos para controle separado dos gastos
 - Inserir investimentos para controle do dinheiro guardado
 - Visualizar os investimentos por categoria
-- (novas ideias)
+- Visualização de diferentes gráficos 
 
 ## Proposta de tecnologias
 Frontend: Javascript, React <br/>
