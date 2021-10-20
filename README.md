@@ -1,11 +1,11 @@
-# carteira - Prática em Desenvolvimento de Software
+# dindin - Prática em Desenvolvimento de Software
 
 Sistema para organização de gastos, investimentos e visualização de categorias para controle financeiro.
 
 Mais detalhes - BACKLOG e QUADRO DA SPRINT DISPONÍVEL EM: (criar link de backlog)
 
 ## Equipe:
-Clarisse Scofield Lenzoni <br/>
+Clarisse Scofield Lenzoni | 2018054699 <br/>
 André Araújo Santos Carmo | 2017023110 <br/>
 Guilherme Pereira | 2016023354 <br/>
 Matheus Henrique Antunes Lima | 2017023153 <br/>
