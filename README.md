@@ -2,8 +2,7 @@
 
 Sistema para organização de gastos, investimentos e visualização de categorias para controle financeiro.
 
-Mais detalhes - BACKLOG e QUADRO DA SPRINT DISPONÍVEL EM: (criar link de backlog)
-
+Mais detalhes - BACKLOG e QUADRO DA SPRINT DISPONÍVEL EM: https://clever-frost-d2a.notion.site/dindin-23fb20be40d04a5285509ada97dda064
 ## Equipe:
 Clarisse Scofield Lenzoni | 2018054699 <br/>
 André Araújo Santos Carmo | 2017023110 <br/>
