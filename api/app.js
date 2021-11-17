@@ -7,7 +7,7 @@ const cors = require('cors');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var instituicaoRouter = require('./routes/instituicao');
+var usuarioRouter = require('./routes/usuario');
 var guerraEstudosRouter = require('./routes/guerraEstudos');
 var equipeRouter = require('./routes/equipe');
 var estudanteRouter = require('./routes/estudante');
@@ -33,7 +33,7 @@ require('./routes/authEstudante.routes')(app);
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/instituicao', instituicaoRouter);
+app.use('/usuario', usuarioRouter);
 app.use('/guerraEstudos', guerraEstudosRouter);
 app.use('/equipe', equipeRouter);
 app.use('/estudante', estudanteRouter);

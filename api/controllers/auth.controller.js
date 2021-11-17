@@ -1,7 +1,7 @@
 const config = require("../config/auth.config");
 // const db = require("../models");
 // const Instituicao = db.instituicao;
-const Instituicao = require('../models/instituicao.model');
+const Usuario = require('../models/usuario.model');
 
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
@@ -13,16 +13,16 @@ exports.signup = (req, res) => {
     const senha = bcrypt.hashSync(req.body.senha, 8)
     const email = req.body.email;
   
-    const newInstituicao = new Instituicao({nome: nome, descricao: descricao, usuario: usuario, senha: senha, email: email});
+    const newUsuario = new Usuario({nome: nome, descricao: descricao, usuario: usuario, senha: senha, email: email});
   
-    newInstituicao.save()
-      .then(() => res.status(200).json({message:"Instituição cadastrada"}))
+    newUsuario.save()
+      .then(() => res.status(200).json({message:"Usuário cadastrado"}))
       .catch(err => res.status(400).json({message: 'Error: ' + err}));
 
 };
 
 exports.signin = (req, res) => {
-  Instituicao.findOne({
+  Usuario.findOne({
     usuario: req.body.usuario
   })
     .exec((err, user) => {

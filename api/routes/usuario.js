@@ -1,9 +1,9 @@
 const router = require('express').Router();
-let Instituicao = require('../models/instituicao.model');
+let Usuario = require('../models/usuario.model');
 
 router.route('/').get((req, res) => {
-  Instituicao.find()
-    .then(instituicao => res.json(instituicao))
+  Usuario.find()
+    .then(usuario => res.json(usuario))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
@@ -14,10 +14,10 @@ router.route('/add').post((req, res) => {
   const senha = req.body.senha;
   const email = req.body.email;
 
-  const newInstituicao = new Instituicao({nome: nome, descricao: descricao, usuario: usuario, senha: senha, email: email});
+  const newUsuario = new Usuario({nome: nome, descricao: descricao, usuario: usuario, senha: senha, email: email});
 
-  newInstituicao.save()
-    .then(() => res.status(200).json({status:"Instituição cadastrada"}))
+  newUsuario.save()
+    .then(() => res.status(200).json({status:"Usuário cadastrado"}))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 

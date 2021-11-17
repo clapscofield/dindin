@@ -3,7 +3,7 @@ var db = require('../database.js');
 
 const Schema = mongoose.Schema;
 
-const instituicaoSchema = new Schema({
+const usuarioSchema = new Schema({
   nome: { type: String },
   descricao: { type: String },
   usuario: { type: String, unique: true, 
@@ -12,8 +12,8 @@ const instituicaoSchema = new Schema({
   email: {type: String }
 }, {
   timestamps: true,
-}, { collection : 'Instituicoes' });
+}, { collection : 'Usuarios' });
 
-const Instituicao = mongoose.model('Instituicoes', instituicaoSchema);
+const Instituicao = mongoose.model('Usuarios', usuarioSchema);
 
 module.exports = Instituicao;
