@@ -15,7 +15,7 @@ import { connect } from "react-redux";
 import { login } from "../../../redux/actionCreators";
 import { Redirect } from "react-router-dom";
 
-const LoginInstituicaoModal = (props) => {
+const LoginModal = (props) => {
   const {
     isLoggedIn,
     message,
@@ -40,7 +40,7 @@ const LoginInstituicaoModal = (props) => {
       dispatch(login(usuario, senha))
         .then(() => {
           /* todo trocar push para rota da pagina inicial */
-          history.push("/landing-inst");
+          history.push("/landing-usuario");
           window.location.reload();
         })
         .catch(() => {
@@ -53,7 +53,7 @@ const LoginInstituicaoModal = (props) => {
 
   if (isLoggedIn) {
     /* TODO redirecionar para pagina inicial do usuario */
-    return <Redirect to="/" />;
+    return <Redirect to="/landing-usuario" />;
   }
 
   return (
@@ -151,4 +151,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(LoginInstituicaoModal);
+export default connect(mapStateToProps)(LoginModal);

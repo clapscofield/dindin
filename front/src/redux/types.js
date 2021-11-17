@@ -1,4 +1,4 @@
-export const LOGIN_INSTITUICAO = "LOGIN_INSTITUICAO";
+export const LOGIN = "LOGIN";
 
 //Equipes Types
 export const INSERIR_EQUIPE = "INSERIR_EQUIPE";

@@ -19,13 +19,13 @@ class AuthService {
     localStorage.removeItem("user");
   }
 
-  register(instituicao) {
+  register(usuario) {
     return axios.post(API_URL + "signup", {
-        usuario: instituicao.usuario,
-        senha: instituicao.senha,
-        email: instituicao.email,
-        nome: instituicao.nome,
-        descricao: instituicao.descricao 
+        usuario: usuario.usuario,
+        senha: usuario.senha,
+        email: usuario.email,
+        nome: usuario.nome,
+        descricao: usuario.descricao 
     });
   }
 }

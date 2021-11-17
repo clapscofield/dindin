@@ -134,7 +134,7 @@ export default function ExamplesNavbar() {
               <Button
                 className="nav-link d-none d-lg-block"
                 color="primary"
-                href="/cadastro-instituicao"
+                href="/cadastro-usuario"
               > 
                 <i className="tim-icons icon-spaceship" /> Criar carteira
               </Button>
