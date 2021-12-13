@@ -109,7 +109,7 @@ const LandingInstNavbar = (props) => {
               <Button
                 className="nav-link d-none d-lg-block"
                 color="primary"
-                href="/criar-guerra"
+                href="/inserir-gasto-ganho"
               > 
                 <i className="tim-icons icon-world" /> Inserir gasto/ganho
               </Button>

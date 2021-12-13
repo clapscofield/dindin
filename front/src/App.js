@@ -8,6 +8,8 @@ import "assets/demo/demo.css";
 import PaginaInicial from "features/paginaInicial";
 import CadastroUsuario from "features/cadastroUsuario";
 import LandingUsuario from "features/landingUsuario";
+import InserirGastoGanho from "features/inserirGastoGanho";
+
 
 const App = props => {
   return (
@@ -16,6 +18,7 @@ const App = props => {
         <Route path="/pagina-inicial" render={(props) => <PaginaInicial {...props} />} />
         <Route path="/cadastro-usuario" render={(props) => <CadastroUsuario {...props} />} />
         <Route path="/landing-usuario" render={(props) => <LandingUsuario {...props} />} />
+        <Route path="/inserir-gasto-ganho" render={(props) => <InserirGastoGanho {...props} />} />
         <Redirect from="/" to="/pagina-inicial" />
       </Switch>
     </Router>

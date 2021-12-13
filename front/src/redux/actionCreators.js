@@ -12,6 +12,15 @@ export const inserirEquipe = (equipes) => ({
   payload: equipes
 })
 
+export const inserirGanho = (entrada) => ({
+  type: types.INSERIR_GANHO,
+  payload: entrada
+})
+
+export const inserirGasto = (saida) => ({
+  type: types.INSERIR_GASTO,
+  payload: saida
+})
 
 /* MESSAGE ACTIONS */
 
