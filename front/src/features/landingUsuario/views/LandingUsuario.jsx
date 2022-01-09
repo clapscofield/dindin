@@ -93,27 +93,32 @@ const LandingUsuario = (props) => {
                 </tr>
               </thead>
               <tbody>
-                {transacoes.map(
-                  ({ _id, tipo, data, valor, descricao, categoria }) => (
-                    <tr key={_id}>
-                      <td className="text-center">{_id}</td>
-                      <td>{tipo}</td>
-                      <td>{data}</td>
-                      <td>{valor}</td>
-                      <td>{descricao}</td>
-                      <td>{categoria}</td>
-                      <td className="text-right">
-                        <Button className="btn-icon" color="success" size="sm">
-                          <i className="fa fa-edit"></i>
-                        </Button>
-                        {` `}
-                        <Button className="btn-icon" color="danger" size="sm">
-                          <i className="fa fa-times" />
-                        </Button>
-                      </td>
-                    </tr>
-                  )
-                )}
+                {transacoes &&
+                  transacoes.map(
+                    ({ _id, tipo, data, valor, descricao, categoria }) => (
+                      <tr key={_id}>
+                        <td className="text-center">{_id}</td>
+                        <td>{tipo}</td>
+                        <td>{data}</td>
+                        <td>{valor}</td>
+                        <td>{descricao}</td>
+                        <td>{categoria}</td>
+                        <td className="text-right">
+                          <Button
+                            className="btn-icon"
+                            color="success"
+                            size="sm"
+                          >
+                            <i className="fa fa-edit"></i>
+                          </Button>
+                          {` `}
+                          <Button className="btn-icon" color="danger" size="sm">
+                            <i className="fa fa-times" />
+                          </Button>
+                        </td>
+                      </tr>
+                    )
+                  )}
               </tbody>
             </Table>
           </Container>
