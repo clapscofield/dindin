@@ -1,20 +1,20 @@
-import GastoGanhoService from "../../services/EntradaService";
+import EntradaService from "../../services/EntradaService";
 
 class InserirGastoGanhoManager{
     async inserirGanho(entrada){
-        return await GastoGanhoService.NovaEntrada(entrada).then(
+        return await EntradaService.NovaEntrada(entrada).then(
             resposta => resposta && resposta.data
         )
     }
 
     async inserirGasto(gasto){
-        return await GastoGanhoService.NovaEntrada(gasto).then(
+        return await EntradaService.NovaEntrada(gasto).then(
             resposta => resposta && resposta.data
         )
     }
 
-    async listar(usuario){
-        return await GastoGanhoService.ListarEntradas(usuario).then(
+    async listarEntradas(usuario){
+        return await EntradaService.ListarEntradas(usuario).then(
             resposta => resposta && resposta.data
         )
     }

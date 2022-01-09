@@ -4,7 +4,7 @@ let Entrada = require('../models/entrada.model');
 router.route('/').get((req, res) => {
   const usuario = req.body.usuario;
 
-  Entrada.find({ usuario: usuario})
+  Entrada.find()
     .then(entradas => res.json(entradas))
     .catch(err => res.status(400).json('Error: ' + err));
 });

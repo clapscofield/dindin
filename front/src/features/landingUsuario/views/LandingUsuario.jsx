@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Row, Col, Container, Button, Table } from "reactstrap";
 import { connect } from "react-redux";
 import { Progress } from "reactstrap";
@@ -11,6 +11,8 @@ import Footer from "components/Footer/Footer.js";
 const LandingUsuario = (props) => {
   const { usuario } = props;
 
+  const [transacoes, setTransacoes] = useState(null);
+
   useEffect(() => {
     document.body.classList.toggle("landing-page");
     // Specify how to clean up after this effect:
@@ -20,9 +22,13 @@ const LandingUsuario = (props) => {
   }, []);
 
   const obterTransacoes = async () => {
-    const resultado = await InserirGastoGanhoManager.listar(usuario);
+    const user = usuario;
+
+    const resultado = await InserirGastoGanhoManager.listarEntradas(user);
+
     if (resultado) {
       console.log("dados obtidos", resultado);
+      setTransacoes(resultado);
     }
   };
 
@@ -90,7 +96,7 @@ const LandingUsuario = (props) => {
               <tbody>
                 <tr>
                   <td className="text-center">1</td>
-                  <td>Andrew Mike</td>
+                  <td>Clarisse</td>
                   <td>Develop</td>
                   <td className="text-center">2013</td>
                   <td className="text-right">€ 99,225</td>
@@ -243,7 +249,7 @@ const LandingUsuario = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    usuario: state.auth && state.auth.user
+    usuario: state.auth && state.auth.user.usuario
   };
 };
 
