@@ -5,14 +5,20 @@ import Datetime from "react-datetime";
 import moment from "moment";
 import Footer from "components/Footer/Footer.js";
 //import CriacaoGuerraEstudosManager from "../CriacaoGuerraEstudosManager";
-import { inserirEquipe } from "../../../redux/actionCreators";
+import { inserirEquipe, inserirGanho } from "../../../redux/actionCreators";
 import { connect } from "react-redux";
+import InserirGastoGanhoManager from "../InserirGastoGanhoManager";
 
 const InserirGastoGanho = (props) => {
   const { usuarioInstituicao, inserirEntrada } = props;
 
   const [redirecionar, setRedirecionar] = useState(null);
   const [botaoHabilitado, setBotaoHabilitado] = useState(true);
+
+  const [valorGanho, setValorGanho] = useState(null);
+  const [dataGanho, setDataGanho] = useState(null);
+  const [categoriaGanho, setCategoriaGanho] = useState(null);
+  const [descricaoGanho, setDescricaoGanho] = useState(null);
 
   const [valor, setValor] = useState(null);
   const [data, setData] = useState(null);
@@ -23,52 +29,45 @@ const InserirGastoGanho = (props) => {
     setBotaoHabilitado(valor && categoria && data);
   }, [setBotaoHabilitado, valor, categoria, data]);
 
-  // const criarEquipes = async () => {
-  //   await Promise.all(
-  //     nomeEquipes.equipes.map(async (i) => {
-  //       const equipe = {
-  //         idEquipe: i,
-  //         usuarioInstituicao: usuarioInstituicao,
-  //         idGuerra: idGuerra
-  //       };
-  //       return await CriacaoGuerraEstudosManager.criarEquipe(equipe);
-  //     })
-  //   );
-  // };
+  const inserirGasto = async () => {
+    const gasto = {
+      data: moment(data).format("DD/MM/YYYY"),
+      categoria: categoria,
+      valor: valor,
+      descricao: descricao,
+      usuario: usuarioInstituicao,
+      tipo: "saida"
+    };
 
-  // const criarGuerraEstudos = async () => {
-  //   const guerraEstudos = {
-  //     dataInicio: moment(dataInicio).format("DD/MM/YYYY"),
-  //     dataFim: moment(dataFim).format("DD/MM/YYYY"),
-  //     identificador: idGuerra,
-  //     numeroAlunosPorEquipe: numeroAlunosPorEquipe,
-  //     idInstituicao: usuarioInstituicao
-  //   };
+    const resultado = await InserirGastoGanhoManager.inserirGasto(gasto);
 
-  //   const resultadoEquipes = criarEquipes();
+    if (resultado) {
+      console.log("Criado com sucesso");
+      setRedirecionar(<Redirect to={"/landing-usuario"} />);
+    }
+  };
 
-  //   const resultado = await CriacaoGuerraEstudosManager.criarGuerraEstudos(
-  //     guerraEstudos
-  //   );
+  const inserirGanho = async () => {
+    const ganho = {
+      data: moment(dataGanho).format("DD/MM/YYYY"),
+      categoria: categoriaGanho,
+      valor: valorGanho,
+      descricao: descricaoGanho,
+      usuario: usuarioInstituicao,
+      tipo: "entrada"
+    };
 
-  //   /* Nome equipes salvo no redux */
-  //   nomeEquipes && inserirEquipe(nomeEquipes);
+    const resultado = await InserirGastoGanhoManager.inserirGanho(ganho);
 
-  //   if (resultado && resultadoEquipes) {
-  //     console.log("Criado com sucesso");
-  //     setRedirecionar(<Redirect to={"/cadastro-aluno"} />);
-  //   }
-  // };
-
-  // function handleChange(event) {
-  //   let vals = [...nomeEquipes.equipes];
-  //   vals[this] = event.target.value;
-  //   setNomeEquipes({ equipes: vals });
-  // }
+    if (resultado) {
+      console.log("Criado com sucesso");
+      setRedirecionar(<Redirect to={"/landing-usuario"} />);
+    }
+  };
 
   const validaData = (currentDate) => {
     var hoje = moment(new Date());
-    var maxDate = moment("2022-01-01");
+    var maxDate = moment("2023-01-01");
     return (
       currentDate.isBefore(moment(maxDate)) && currentDate.isAfter(moment(hoje))
     );
@@ -88,20 +87,20 @@ const InserirGastoGanho = (props) => {
                     <Row>
                       <Col>
                         <Input
-                          value={valor}
+                          value={valorGanho}
                           placeholder="Inserir valor"
                           type="text"
-                          onChange={(e) => setValor(e.target.value)}
+                          onChange={(e) => setValorGanho(e.target.value)}
                           className={"mb-4"}
                         />
                       </Col>
                       <Col className={"mb-4"}>
                         <Datetime
-                          value={data}
+                          value={dataGanho}
                           timeFormat={false}
                           inputProps={{ placeholder: "Data" }}
                           dateFormat={"DD/MM/YYYY"}
-                          onChange={(e) => setData(e)}
+                          onChange={(e) => setDataGanho(e)}
                           isValidDate={validaData}
                         />
                       </Col>
@@ -112,16 +111,16 @@ const InserirGastoGanho = (props) => {
                           value={categoria}
                           placeholder="Categoria"
                           type="text"
-                          onChange={(e) => setCategoria(e.target.value)}
+                          onChange={(e) => setCategoriaGanho(e.target.value)}
                           className={"mb-4"}
                         />
                       </Col>
                       <Col className={"mb-4"}>
                         <Input
-                          value={descricao}
+                          value={descricaoGanho}
                           placeholder="Descrição"
                           type="text"
-                          onChange={(e) => setDescricao(e.target.value)}
+                          onChange={(e) => setDescricaoGanho(e.target.value)}
                           className={"mb-4"}
                         />
                       </Col>
@@ -131,7 +130,7 @@ const InserirGastoGanho = (props) => {
                       className="btn-round mb-4"
                       color="primary"
                       type="button"
-                      //onClick={addClick}
+                      onClick={inserirGanho}
                     >
                       Inserir ganho
                     </Button>
@@ -188,7 +187,7 @@ const InserirGastoGanho = (props) => {
                       className="btn-round mb-4"
                       color="primary"
                       type="button"
-                      //onClick={addClick}
+                      onClick={inserirGasto}
                     >
                       Inserir gasto
                     </Button>

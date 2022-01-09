@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
-import { Row, Col, Container } from "reactstrap";
+import { Row, Col, Container, Button, Table } from "reactstrap";
 import { connect } from "react-redux";
 import { Progress } from "reactstrap";
+import InserirGastoGanhoManager from "features/inserirGastoGanho/InserirGastoGanhoManager";
 
 // core components
 import LandingUsuarioNavbar from "components/Navbars/LandingUsuarioNavbar.js";
@@ -9,12 +10,25 @@ import Footer from "components/Footer/Footer.js";
 
 const LandingUsuario = (props) => {
   const { usuario } = props;
+
   useEffect(() => {
     document.body.classList.toggle("landing-page");
     // Specify how to clean up after this effect:
     return function cleanup() {
       document.body.classList.toggle("landing-page");
     };
+  }, []);
+
+  const obterTransacoes = async () => {
+    const resultado = await InserirGastoGanhoManager.listar(usuario);
+    if (resultado) {
+      console.log("dados obtidos", resultado);
+    }
+  };
+
+  //obter ultimos dados
+  useEffect(() => {
+    obterTransacoes();
   }, []);
 
   return (
@@ -56,12 +70,113 @@ const LandingUsuario = (props) => {
             <Row>
               <Col>
                 <h1 className="text-white mt-10" style={{ marginTop: "100px" }}>
-                  Dashboard {usuario && usuario.nome} <br />
+                  Transações {usuario && usuario.nome} <br />
                 </h1>
               </Col>
             </Row>
 
-            <div className="progress-container" style={{ marginTop: "50px" }}>
+            <Table responsive>
+              <thead>
+                <tr>
+                  <th className="text-center">#id</th>
+                  <th>Tipo</th>
+                  <th className="text-center">Data</th>
+                  <th className="text-right">Valor</th>
+                  <th>Descrição</th>
+                  <th>Categoria</th>
+                  <th className="text-right">Ações</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className="text-center">1</td>
+                  <td>Andrew Mike</td>
+                  <td>Develop</td>
+                  <td className="text-center">2013</td>
+                  <td className="text-right">€ 99,225</td>
+                  <td className="text-right">
+                    <Button className="btn-icon" color="info" size="sm">
+                      <i className="fa fa-user"></i>
+                    </Button>
+                    {` `}
+                    <Button className="btn-icon" color="success" size="sm">
+                      <i className="fa fa-edit"></i>
+                    </Button>
+                    {` `}
+                    <Button className="btn-icon" color="danger" size="sm">
+                      <i className="fa fa-times" />
+                    </Button>
+                  </td>
+                </tr>
+                <tr>
+                  <td className="text-center">2</td>
+                  <td>Manuel Rico</td>
+                  <td>Manager</td>
+                  <td className="text-center">2012</td>
+                  <td className="text-right">€ 99,201</td>
+                  <td className="text-right">
+                    <Button
+                      className="btn-icon btn-round"
+                      color="info"
+                      size="sm"
+                    >
+                      <i className="fa fa-user"></i>
+                    </Button>
+                    {` `}
+                    <Button
+                      className="btn-icon btn-round"
+                      color="success"
+                      size="sm"
+                    >
+                      <i className="fa fa-edit"></i>
+                    </Button>
+                    {` `}
+                    <Button
+                      className="btn-icon btn-round"
+                      color="danger"
+                      size="sm"
+                    >
+                      <i className="fa fa-times" />
+                    </Button>
+                    {` `}
+                  </td>
+                </tr>
+                <tr>
+                  <td className="text-center">3</td>
+                  <td>Alex Mike</td>
+                  <td>Designer</td>
+                  <td className="text-center">2012</td>
+                  <td className="text-right">€ 99,201</td>
+                  <td className="text-right">
+                    <Button
+                      className="btn-icon btn-simple"
+                      color="info"
+                      size="sm"
+                    >
+                      <i className="fa fa-user"></i>
+                    </Button>
+                    {` `}
+                    <Button
+                      className="btn-icon btn-simple"
+                      color="success"
+                      size="sm"
+                    >
+                      <i className="fa fa-edit"></i>
+                    </Button>
+                    {` `}
+                    <Button
+                      className="btn-icon btn-simple"
+                      color="danger"
+                      size="sm"
+                    >
+                      <i className="fa fa-times" />
+                    </Button>
+                    {` `}
+                  </td>
+                </tr>
+              </tbody>
+            </Table>
+            {/* <div className="progress-container" style={{ marginTop: "50px" }}>
               <span className="progress-badge">Dany</span>
               <Progress max="100" value="25">
                 <span className="progress-value">15%</span>
@@ -108,7 +223,7 @@ const LandingUsuario = (props) => {
               <Progress max="100" value="90" barClassName="progress-bar-info">
                 <span className="progress-value">1.25%</span>
               </Progress>
-            </div>
+            </div> */}
           </Container>
         </div>
         <section className="section section-lg">

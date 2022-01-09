@@ -8,10 +8,16 @@ class InserirGastoGanhoManager{
     }
 
     async inserirGasto(gasto){
-        return await EntradaService.NovaEntrada(gasto).then(
+        return await GastoGanhoService.NovaEntrada(gasto).then(
+            resposta => resposta && resposta.data
+        )
+    }
+
+    async listar(usuario){
+        return await GastoGanhoService.ListarEntradas(usuario).then(
             resposta => resposta && resposta.data
         )
     }
 }
 
-export default new CadastroEntradaManager();
+export default new InserirGastoGanhoManager();

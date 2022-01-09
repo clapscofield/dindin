@@ -2,7 +2,7 @@ import axios from "axios";
 
 class EntradaService {
     async ListarEntradas(usuario) {
-        return await axios.get("http://localhost:7000/entrada/add", {
+        return await axios.get("http://localhost:7000/entrada/", {
             usuario: usuario
         });
     }
