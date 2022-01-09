@@ -80,156 +80,42 @@ const LandingUsuario = (props) => {
                 </h1>
               </Col>
             </Row>
-
             <Table responsive>
               <thead>
                 <tr>
                   <th className="text-center">#id</th>
                   <th>Tipo</th>
                   <th className="text-center">Data</th>
-                  <th className="text-right">Valor</th>
+                  <th>Valor</th>
                   <th>Descrição</th>
                   <th>Categoria</th>
                   <th className="text-right">Ações</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td className="text-center">1</td>
-                  <td>Clarisse</td>
-                  <td>Develop</td>
-                  <td className="text-center">2013</td>
-                  <td className="text-right">€ 99,225</td>
-                  <td className="text-right">
-                    <Button className="btn-icon" color="info" size="sm">
-                      <i className="fa fa-user"></i>
-                    </Button>
-                    {` `}
-                    <Button className="btn-icon" color="success" size="sm">
-                      <i className="fa fa-edit"></i>
-                    </Button>
-                    {` `}
-                    <Button className="btn-icon" color="danger" size="sm">
-                      <i className="fa fa-times" />
-                    </Button>
-                  </td>
-                </tr>
-                <tr>
-                  <td className="text-center">2</td>
-                  <td>Manuel Rico</td>
-                  <td>Manager</td>
-                  <td className="text-center">2012</td>
-                  <td className="text-right">€ 99,201</td>
-                  <td className="text-right">
-                    <Button
-                      className="btn-icon btn-round"
-                      color="info"
-                      size="sm"
-                    >
-                      <i className="fa fa-user"></i>
-                    </Button>
-                    {` `}
-                    <Button
-                      className="btn-icon btn-round"
-                      color="success"
-                      size="sm"
-                    >
-                      <i className="fa fa-edit"></i>
-                    </Button>
-                    {` `}
-                    <Button
-                      className="btn-icon btn-round"
-                      color="danger"
-                      size="sm"
-                    >
-                      <i className="fa fa-times" />
-                    </Button>
-                    {` `}
-                  </td>
-                </tr>
-                <tr>
-                  <td className="text-center">3</td>
-                  <td>Alex Mike</td>
-                  <td>Designer</td>
-                  <td className="text-center">2012</td>
-                  <td className="text-right">€ 99,201</td>
-                  <td className="text-right">
-                    <Button
-                      className="btn-icon btn-simple"
-                      color="info"
-                      size="sm"
-                    >
-                      <i className="fa fa-user"></i>
-                    </Button>
-                    {` `}
-                    <Button
-                      className="btn-icon btn-simple"
-                      color="success"
-                      size="sm"
-                    >
-                      <i className="fa fa-edit"></i>
-                    </Button>
-                    {` `}
-                    <Button
-                      className="btn-icon btn-simple"
-                      color="danger"
-                      size="sm"
-                    >
-                      <i className="fa fa-times" />
-                    </Button>
-                    {` `}
-                  </td>
-                </tr>
+                {transacoes.map(
+                  ({ _id, tipo, data, valor, descricao, categoria }) => (
+                    <tr key={_id}>
+                      <td className="text-center">{_id}</td>
+                      <td>{tipo}</td>
+                      <td>{data}</td>
+                      <td>{valor}</td>
+                      <td>{descricao}</td>
+                      <td>{categoria}</td>
+                      <td className="text-right">
+                        <Button className="btn-icon" color="success" size="sm">
+                          <i className="fa fa-edit"></i>
+                        </Button>
+                        {` `}
+                        <Button className="btn-icon" color="danger" size="sm">
+                          <i className="fa fa-times" />
+                        </Button>
+                      </td>
+                    </tr>
+                  )
+                )}
               </tbody>
             </Table>
-            {/* <div className="progress-container" style={{ marginTop: "50px" }}>
-              <span className="progress-badge">Dany</span>
-              <Progress max="100" value="25">
-                <span className="progress-value">15%</span>
-              </Progress>
-            </div>
-            <div className="progress-container progress-primary">
-              <span className="progress-badge">Arya</span>
-              <Progress
-                max="100"
-                value="60"
-                barClassName="progress-bar-primary"
-              >
-                <span className="progress-value">7.5%</span>
-              </Progress>
-            </div>
-            <div className="progress-container progress-danger">
-              <span className="progress-badge">Tyrion</span>
-              <Progress max="100" value="50" barClassName="progress-bar-danger">
-                <span className="progress-value">7.5%</span>
-              </Progress>
-            </div>
-            <div className="progress-container progress-warning">
-              <span className="progress-badge">Yara</span>
-              <Progress
-                max="100"
-                value="77"
-                barClassName="progress-bar-warning"
-              >
-                <span className="progress-value">10%</span>
-              </Progress>
-            </div>
-            <div className="progress-container progress-success">
-              <span className="progress-badge">Loras</span>
-              <Progress
-                max="100"
-                value="46"
-                barClassName="progress-bar-success"
-              >
-                <span className="progress-value">50%</span>
-              </Progress>
-            </div>
-            <div className="progress-container progress-info">
-              <span className="progress-badge">Robert</span>
-              <Progress max="100" value="90" barClassName="progress-bar-info">
-                <span className="progress-value">1.25%</span>
-              </Progress>
-            </div> */}
           </Container>
         </div>
         <section className="section section-lg">
