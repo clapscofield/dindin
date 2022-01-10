@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Button,
   Form,
@@ -12,34 +12,79 @@ import {
 } from "reactstrap";
 import classnames from "classnames";
 import { connect } from "react-redux";
-import { loginEstudante } from "../../../redux/actionCreators";
 import { Redirect, useHistory } from "react-router-dom";
+import Datetime from "react-datetime";
+import InserirGastoGanhoManager from "features/inserirGastoGanho/InserirGastoGanhoManager";
+import { setMessage } from "../../../redux/actionCreators";
+import { clearMessage } from "../../../redux/actionCreators";
+import moment from "moment";
 
 const EditarModal = (props) => {
-  const { modalAberto, setModalAberto, dadosTransacao } = props;
+  const {
+    message,
+    setMessageRedux,
+    clearMessageRedux,
+    modalAberto,
+    setModalAberto,
+    dadosTransacao,
+    setDadosTransacao
+  } = props;
 
   const history = useHistory();
-
-  const [emailFocus, setEmailFocus] = useState(false);
-  const [passwordFocus, setPasswordFocus] = useState(false);
+  const [valorFocus, setValorFocus] = useState(false);
+  const [descricaoFocus, setDescricaoFocus] = useState(false);
+  const [categoriaFocus, setCategoriaFocus] = useState(false);
+  const [dataFocus, setDataFocus] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const handleLogin = () => {
+  const [sucesso, setSucesso] = useState(false);
+  const [alertaAberto, setAlertaAberto] = useState(false);
+
+  useEffect(() => {
+    setAlertaAberto(message && message.message);
+  }, [message]);
+
+  const handleSalvarAlteracoes = async () => {
+    let mensagem = "";
     setLoading(true);
 
-    if (usuario !== null && usuario !== "" && senha !== null && senha !== "") {
-      dispatch(loginEstudante(usuario, senha))
-        .then(() => {
-          console.log("oi");
-          history.push("/landing-est");
-          window.location.reload();
-        })
-        .catch(() => {
-          setLoading(false);
-        });
+    if (dadosTransacao) {
+      const edicao = {
+        id: dadosTransacao.id,
+        data: moment(dadosTransacao.data).format("DD/MM/YYYY"),
+        categoria: dadosTransacao.categoria,
+        valor: dadosTransacao.valor,
+        descricao: dadosTransacao.descricao,
+        usuario: dadosTransacao.usuario,
+        tipo: dadosTransacao.tipo
+      };
+
+      console.log(edicao);
+
+      await InserirGastoGanhoManager.editarEntrada(edicao).then(
+        async (response) => {
+          console.log("sucesso");
+          setSucesso(true);
+          mensagem = response && response.status;
+        },
+        async (error) => {
+          console.log("erro");
+          const erro =
+            (error.response &&
+              error.response.data &&
+              error.response.data.status) ||
+            error.status ||
+            error.toString();
+          console.log(erro);
+          setSucesso(false);
+          mensagem = erro;
+        }
+      );
+      await setMessageRedux(mensagem);
     }
 
     setLoading(false);
+    setModalAberto(false);
   };
 
   return (
@@ -64,7 +109,7 @@ const EditarModal = (props) => {
           <FormGroup className="mb-3">
             <InputGroup
               className={classnames("input-group-alternative", {
-                "input-group-focus": emailFocus
+                "input-group-focus": valorFocus
               })}
             >
               <InputGroupAddon addonType="prepend">
@@ -73,19 +118,24 @@ const EditarModal = (props) => {
                 </InputGroupText>
               </InputGroupAddon>
               <Input
-                placeholder="Matrícula"
+                placeholder="Valor"
                 type="text"
-                value={usuario}
-                onChange={(e) => setUsuario(e.target.value)}
-                onFocus={(e) => setEmailFocus(true)}
-                onBlur={(e) => setEmailFocus(false)}
+                value={dadosTransacao && dadosTransacao.valor}
+                onChange={(e) => {
+                  setDadosTransacao({
+                    ...dadosTransacao,
+                    valor: e.target.value
+                  });
+                }}
+                onFocus={(e) => setValorFocus(true)}
+                onBlur={(e) => setValorFocus(false)}
               />
             </InputGroup>
           </FormGroup>
           <FormGroup>
             <InputGroup
               className={classnames("input-group-alternative", {
-                "input-group-focus": passwordFocus
+                "input-group-focus": descricaoFocus
               })}
             >
               <InputGroupAddon addonType="prepend">
@@ -94,14 +144,73 @@ const EditarModal = (props) => {
                 </InputGroupText>
               </InputGroupAddon>
               <Input
-                placeholder="Senha"
-                type="password"
-                value={senha}
-                onChange={(e) => setSenha(e.target.value)}
-                onFocus={(e) => setPasswordFocus(true)}
-                onBlur={(e) => setPasswordFocus(false)}
+                placeholder="Descrição"
+                type="text"
+                value={dadosTransacao && dadosTransacao.descricao}
+                onChange={(e) =>
+                  setDadosTransacao({
+                    ...dadosTransacao,
+                    descricao: e.target.value
+                  })
+                }
+                onFocus={(e) => setDescricaoFocus(true)}
+                onBlur={(e) => setDescricaoFocus(false)}
               />
             </InputGroup>
+            <FormGroup className="mb-3">
+              <InputGroup
+                className={classnames("input-group-alternative", {
+                  "input-group-focus": categoriaFocus
+                })}
+              >
+                <InputGroupAddon addonType="prepend">
+                  <InputGroupText>
+                    <i className="tim-icons icon-badge" />
+                  </InputGroupText>
+                </InputGroupAddon>
+                <Input
+                  placeholder="Categoria"
+                  type="text"
+                  value={dadosTransacao && dadosTransacao.categoria}
+                  onChange={(e) =>
+                    setDadosTransacao({
+                      ...dadosTransacao,
+                      categoria: e.target.value
+                    })
+                  }
+                  onFocus={(e) => setCategoriaFocus(true)}
+                  onBlur={(e) => setCategoriaFocus(false)}
+                />
+              </InputGroup>
+            </FormGroup>
+            <FormGroup className="mb-3">
+              <InputGroup
+                className={classnames("input-group-alternative", {
+                  "input-group-focus": dataFocus
+                })}
+              >
+                <InputGroupAddon addonType="prepend">
+                  <InputGroupText>
+                    <i className="tim-icons icon-badge" />
+                  </InputGroupText>
+                </InputGroupAddon>
+                <Datetime
+                  value={
+                    dadosTransacao &&
+                    moment(dadosTransacao.data).format("DD/MM/YYYY")
+                  }
+                  timeFormat={false}
+                  inputProps={{ placeholder: "Data" }}
+                  dateFormat={"DD/MM/YYYY"}
+                  onChange={(e) =>
+                    setDadosTransacao({
+                      ...dadosTransacao,
+                      data: e
+                    })
+                  }
+                />
+              </InputGroup>
+            </FormGroup>
           </FormGroup>
           <div className="text-center">
             <Button
@@ -109,16 +218,20 @@ const EditarModal = (props) => {
               color="primary"
               type="button"
               disabled={loading}
-              onClick={() => handleLogin()}
+              onClick={() => handleSalvarAlteracoes()}
             >
               {loading && (
                 <span className="spinner-border spinner-border-sm"></span>
               )}
-              Entrar
+              Salvar alterações
             </Button>
           </div>
-          {message && (
-            <Alert color={"danger"}>
+          {message && sucesso && (
+            <Alert
+              color={"success"}
+              isOpen={alertaAberto}
+              toggle={() => setAlertaAberto(false)}
+            >
               <span>{message}</span>
             </Alert>
           )}
@@ -128,4 +241,16 @@ const EditarModal = (props) => {
   );
 };
 
-export default connect(mapStateToProps)(EditarModal);
+function mapStateToProps(state) {
+  const { message } = state.message;
+  return {
+    message
+  };
+}
+
+const mapDispatchToProps = (dispatch) => ({
+  setMessageRedux: (message) => dispatch(setMessage(message)),
+  clearMessageRedux: () => dispatch(clearMessage())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditarModal);

@@ -35,13 +35,15 @@ router.route('/delete').delete((req, res) => {
 });
 
 router.route('/edit').post((req, res) => {
-  const id = req.body.id;
+  var o_id = new mongo.ObjectID(req.body.id);
   const tipo = req.body.tipo;
   const descricao = req.body.descricao;
   const valor = req.body.valor;
   const categoria = req.body.categoria;
+  const data = req.body.data;
 
-  Entrada.updateOne({_id: id}, {tipo: tipo, descricao: descricao, valor: valor, categoria: categoria})
+  Entrada.updateOne({_id: o_id}, 
+    { $set: {tipo: tipo, descricao: descricao, valor: valor, categoria: categoria, data: data} },{upsert: true},)
     .then(() => res.status(200).json({status:"Entrada atualizada"}))
     .catch(err => res.status(400).json('Error: ' + err));
 });

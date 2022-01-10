@@ -3,10 +3,11 @@ import { Row, Col, Container, Button, Table } from "reactstrap";
 import { connect } from "react-redux";
 import InserirGastoGanhoManager from "features/inserirGastoGanho/InserirGastoGanhoManager";
 import { Redirect } from "react-router-dom";
-
+import EditarGastoGanho from "./EditarGastoGanho";
 // core components
 import LandingUsuarioNavbar from "components/Navbars/LandingUsuarioNavbar.js";
 import Footer from "components/Footer/Footer.js";
+import moment from "moment";
 
 const LandingUsuario = (props) => {
   const { usuario } = props;
@@ -14,6 +15,8 @@ const LandingUsuario = (props) => {
   const [redirecionar, setRedirecionar] = useState(null);
   const [transacoes, setTransacoes] = useState(null);
   const [idTransacao, setIdTransacao] = useState(null);
+  const [modalEditar, setModalEditar] = useState(null);
+  const [dadosEditar, setDadosEditar] = useState(null);
 
   useEffect(() => {
     document.body.classList.toggle("landing-page");
@@ -119,7 +122,7 @@ const LandingUsuario = (props) => {
                       <tr key={_id}>
                         <td className="text-center">{_id}</td>
                         <td>{tipo}</td>
-                        <td>{data}</td>
+                        <td>{moment(data).format("DD/MM/YYYY")}</td>
                         <td>{valor}</td>
                         <td>{descricao}</td>
                         <td>{categoria}</td>
@@ -128,6 +131,18 @@ const LandingUsuario = (props) => {
                             className="btn-icon"
                             color="success"
                             size="sm"
+                            onClick={() => {
+                              setModalEditar(true);
+                              setDadosEditar({
+                                id: _id,
+                                tipo: tipo,
+                                data: data,
+                                valor: valor,
+                                descricao: descricao,
+                                categoria: categoria,
+                                usuario: usuario
+                              });
+                            }}
                           >
                             <i className="fa fa-edit"></i>
                           </Button>
@@ -146,6 +161,12 @@ const LandingUsuario = (props) => {
                   )}
               </tbody>
             </Table>
+            <EditarGastoGanho
+              modalAberto={modalEditar}
+              setModalAberto={setModalEditar}
+              dadosTransacao={dadosEditar}
+              setDadosTransacao={setDadosEditar}
+            />
           </Container>
         </div>
         <section className="section section-lg">

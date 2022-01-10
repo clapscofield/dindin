@@ -24,12 +24,14 @@ class EntradaService {
     }
 
     async EditarEntrada(entrada) {
-        return await axios.patch("http://localhost:7000/entrada/edit", {
+        return await axios.post("http://localhost:7000/entrada/edit", {
             tipo: entrada.tipo,
             descricao: entrada.descricao,
             valor:  entrada.valor,
             usuario: entrada.usuario,
-            id: entrada._id
+            data: entrada.data,
+            categoria: entrada.categoria,
+            id: entrada.id
         });
     }
 }

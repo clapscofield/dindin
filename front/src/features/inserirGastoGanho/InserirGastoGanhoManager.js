@@ -24,6 +24,12 @@ class InserirGastoGanhoManager{
             resposta => resposta && resposta.data
         )
     }
+
+    async editarEntrada(dados){
+        return await EntradaService.EditarEntrada(dados).then(
+            resposta => resposta && resposta.data
+        )
+    }
 }
 
 export default new InserirGastoGanhoManager();
