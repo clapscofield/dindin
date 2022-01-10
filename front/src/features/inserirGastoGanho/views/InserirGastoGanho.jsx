@@ -5,7 +5,7 @@ import Datetime from "react-datetime";
 import moment from "moment";
 import Footer from "components/Footer/Footer.js";
 //import CriacaoGuerraEstudosManager from "../CriacaoGuerraEstudosManager";
-import { inserirEquipe, inserirGanho } from "../../../redux/actionCreators";
+import { inserirEquipe } from "../../../redux/actionCreators";
 import { connect } from "react-redux";
 import InserirGastoGanhoManager from "../InserirGastoGanhoManager";
 

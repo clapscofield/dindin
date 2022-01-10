@@ -8,13 +8,9 @@ const cors = require('cors');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var usuarioRouter = require('./routes/usuario');
-var guerraEstudosRouter = require('./routes/guerraEstudos');
-var equipeRouter = require('./routes/equipe');
-var estudanteRouter = require('./routes/estudante');
 var entradasRouter = require('./routes/entrada');
 
 var app = express();
-
 
 
 // view engine setup
@@ -30,14 +26,10 @@ app.use(bodyParser.json());
 
 // routes
 require('./routes/auth.routes')(app);
-require('./routes/authEstudante.routes')(app);
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/usuario', usuarioRouter);
-app.use('/guerraEstudos', guerraEstudosRouter);
-app.use('/equipe', equipeRouter);
-app.use('/estudante', estudanteRouter);
 app.use('/entrada', entradasRouter);
 
 

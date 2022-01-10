@@ -1,5 +1,6 @@
 const router = require('express').Router();
 let Entrada = require('../models/entrada.model');
+mongo = require('mongodb');
 
 router.route('/').get((req, res) => {
   const usuario = req.body.usuario;
@@ -24,10 +25,11 @@ router.route('/add').post((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/delete').post((req, res) => {
-  const id = req.body.id;
+router.route('/delete').delete((req, res) => {
+  console.log(req.body);
+  var o_id = new mongo.ObjectID(req.body.id);
 
-  Entrada.deleteOne({_id: id})
+  Entrada.deleteOne({_id: o_id})
     .then(() => res.status(200).json({status:"Entrada removida"}))
     .catch(err => res.status(400).json('Error: ' + err));
 });

@@ -12,14 +12,15 @@ class EntradaService {
             tipo: entrada.tipo,
             descricao: entrada.descricao,
             valor:  entrada.valor,
-            usuario: entrada.usuario
+            usuario: entrada.usuario,
+            categoria: entrada.categoria
         });
     }
 
     async RemoverEntrada(id) {
-        return await axios.delete("http://localhost:7000/entrada/delete", {
+        return await axios.delete("http://localhost:7000/entrada/delete", { data: {
             id: id
-        });
+        }});
     }
 
     async EditarEntrada(entrada) {

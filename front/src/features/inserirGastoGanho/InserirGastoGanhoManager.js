@@ -18,6 +18,12 @@ class InserirGastoGanhoManager{
             resposta => resposta && resposta.data
         )
     }
+
+    async removerEntrada(id){
+        return await EntradaService.RemoverEntrada(id).then(
+            resposta => resposta && resposta.data
+        )
+    }
 }
 
 export default new InserirGastoGanhoManager();

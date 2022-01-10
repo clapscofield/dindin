@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Row, Col, Container, Button, Table } from "reactstrap";
 import { connect } from "react-redux";
-import { Progress } from "reactstrap";
 import InserirGastoGanhoManager from "features/inserirGastoGanho/InserirGastoGanhoManager";
+import { Redirect } from "react-router-dom";
 
 // core components
 import LandingUsuarioNavbar from "components/Navbars/LandingUsuarioNavbar.js";
@@ -11,7 +11,9 @@ import Footer from "components/Footer/Footer.js";
 const LandingUsuario = (props) => {
   const { usuario } = props;
 
+  const [redirecionar, setRedirecionar] = useState(null);
   const [transacoes, setTransacoes] = useState(null);
+  const [idTransacao, setIdTransacao] = useState(null);
 
   useEffect(() => {
     document.body.classList.toggle("landing-page");
@@ -31,6 +33,25 @@ const LandingUsuario = (props) => {
       setTransacoes(resultado);
     }
   };
+
+  const removerTransacao = async () => {
+    if (idTransacao) {
+      const resultado = await InserirGastoGanhoManager.removerEntrada(
+        idTransacao
+      );
+
+      if (resultado) {
+        console.log(resultado);
+        setRedirecionar(<Redirect to={"/landing-usuario"} />);
+      }
+    }
+  };
+
+  //ao setar o id para remoção
+  useEffect(() => {
+    removerTransacao();
+    obterTransacoes();
+  }, [idTransacao]);
 
   //obter ultimos dados
   useEffect(() => {
@@ -112,7 +133,12 @@ const LandingUsuario = (props) => {
                             <i className="fa fa-edit"></i>
                           </Button>
                           {` `}
-                          <Button className="btn-icon" color="danger" size="sm">
+                          <Button
+                            className="btn-icon"
+                            color="danger"
+                            size="sm"
+                            onClick={() => setIdTransacao(_id)}
+                          >
                             <i className="fa fa-times" />
                           </Button>
                         </td>
@@ -134,6 +160,7 @@ const LandingUsuario = (props) => {
         </section>
       </div>
       <Footer />
+      {redirecionar}
     </>
   );
 };
