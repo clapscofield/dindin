@@ -21,7 +21,7 @@ router.route('/add').post((req, res) => {
   const novaEntrada = new Entrada({data: data, descricao: descricao, valor: valor, usuario: usuario, categoria: categoria, tipo:tipo});
 
   novaEntrada.save()
-    .then(() => res.status(200).json({status:"Entrada cadastrado"}))
+    .then(() => res.status(200).json({status:"Entrada cadastrada"}))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
