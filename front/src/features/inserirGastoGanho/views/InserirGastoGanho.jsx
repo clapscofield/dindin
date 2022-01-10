@@ -1,19 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Button, Form, Input, Container, Row, Col } from "reactstrap";
 import { Redirect } from "react-router-dom";
 import Datetime from "react-datetime";
 import moment from "moment";
 import Footer from "components/Footer/Footer.js";
 //import CriacaoGuerraEstudosManager from "../CriacaoGuerraEstudosManager";
-import { inserirEquipe } from "../../../redux/actionCreators";
 import { connect } from "react-redux";
 import InserirGastoGanhoManager from "../InserirGastoGanhoManager";
 
 const InserirGastoGanho = (props) => {
-  const { usuarioInstituicao, inserirEntrada } = props;
+  const { usuarioInstituicao } = props;
 
   const [redirecionar, setRedirecionar] = useState(null);
-  const [botaoHabilitado, setBotaoHabilitado] = useState(true);
 
   const [valorGanho, setValorGanho] = useState(null);
   const [dataGanho, setDataGanho] = useState(null);
@@ -24,10 +22,6 @@ const InserirGastoGanho = (props) => {
   const [data, setData] = useState(null);
   const [categoria, setCategoria] = useState(null);
   const [descricao, setDescricao] = useState(null);
-
-  useEffect(() => {
-    setBotaoHabilitado(valor && categoria && data);
-  }, [setBotaoHabilitado, valor, categoria, data]);
 
   const inserirGasto = async () => {
     const gasto = {
@@ -211,10 +205,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    inserirEntrada: (entrada) => dispatch(inserirEquipe(entrada))
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(InserirGastoGanho);
+export default connect(mapStateToProps)(InserirGastoGanho);

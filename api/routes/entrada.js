@@ -39,8 +39,9 @@ router.route('/edit').post((req, res) => {
   const tipo = req.body.tipo;
   const descricao = req.body.descricao;
   const valor = req.body.valor;
+  const categoria = req.body.categoria;
 
-  Entrada.updateOne({_id: id}, {tipo: tipo, descricao: descricao, valor: valor})
+  Entrada.updateOne({_id: id}, {tipo: tipo, descricao: descricao, valor: valor, categoria: categoria})
     .then(() => res.status(200).json({status:"Entrada atualizada"}))
     .catch(err => res.status(400).json('Error: ' + err));
 });

@@ -23,40 +23,39 @@ const LandingUsuario = (props) => {
     };
   }, []);
 
-  const obterTransacoes = async () => {
-    const user = usuario;
-
-    const resultado = await InserirGastoGanhoManager.listarEntradas(user);
-
-    if (resultado) {
-      console.log("dados obtidos", resultado);
-      setTransacoes(resultado);
-    }
-  };
-
-  const removerTransacao = async () => {
-    if (idTransacao) {
-      const resultado = await InserirGastoGanhoManager.removerEntrada(
-        idTransacao
-      );
-
-      if (resultado) {
-        console.log(resultado);
-        setRedirecionar(<Redirect to={"/landing-usuario"} />);
-      }
-    }
-  };
-
   //ao setar o id para remoção
   useEffect(() => {
+    const removerTransacao = async () => {
+      if (idTransacao) {
+        const resultado = await InserirGastoGanhoManager.removerEntrada(
+          idTransacao
+        );
+
+        if (resultado) {
+          console.log(resultado);
+          setRedirecionar(<Redirect to={"/landing-usuario"} />);
+        }
+      }
+    };
+
     removerTransacao();
-    obterTransacoes();
   }, [idTransacao]);
 
   //obter ultimos dados
   useEffect(() => {
+    const obterTransacoes = async () => {
+      const user = usuario;
+
+      const resultado = await InserirGastoGanhoManager.listarEntradas(user);
+
+      if (resultado) {
+        console.log("dados obtidos", resultado);
+        setTransacoes(resultado);
+      }
+    };
+
     obterTransacoes();
-  }, []);
+  }, [usuario]);
 
   return (
     <>
