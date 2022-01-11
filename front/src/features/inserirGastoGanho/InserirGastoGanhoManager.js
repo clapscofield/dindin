@@ -3,13 +3,13 @@ import EntradaService from "../../services/EntradaService";
 class InserirGastoGanhoManager{
     async inserirGanho(entrada){
         return await EntradaService.NovaEntrada(entrada).then(
-            resposta => resposta && resposta.data
+            resposta => resposta 
         )
     }
 
     async inserirGasto(gasto){
         return await EntradaService.NovaEntrada(gasto).then(
-            resposta => resposta && resposta.data
+            resposta => resposta
         )
     }
 
