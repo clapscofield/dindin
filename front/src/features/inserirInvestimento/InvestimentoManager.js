@@ -13,7 +13,7 @@ class InvestimentoManager{
         )
     }
 
-    async removerInvestimentos(id){
+    async removerInvestimento(id){
         return await InvestimentoService.RemoverInvestimento(id).then(
             resposta => resposta && resposta.data
         )

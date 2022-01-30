@@ -10,6 +10,7 @@ import CadastroUsuario from "features/cadastroUsuario";
 import LandingUsuario from "features/landingUsuario";
 import InserirGastoGanho from "features/inserirGastoGanho";
 import InserirInvestimento from "features/inserirInvestimento";
+import VisualizarInvestimentos from "features/visualizarInvestimentos/views/visualizarInvestimentos";
 
 const App = props => {
   return (
@@ -20,6 +21,7 @@ const App = props => {
         <Route path="/landing-usuario" render={(props) => <LandingUsuario {...props} />} />
         <Route path="/inserir-gasto-ganho" render={(props) => <InserirGastoGanho {...props} />} />
         <Route path="/inserir-investimento" render={(props) => <InserirInvestimento {...props} />} />
+        <Route path="/visualizar-investimentos" render={(props) => <VisualizarInvestimentos {...props} />} />
         <Redirect from="/" to="/pagina-inicial" />
       </Switch>
     </Router>

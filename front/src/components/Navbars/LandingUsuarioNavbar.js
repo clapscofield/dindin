@@ -129,6 +129,11 @@ const LandingInstNavbar = (props) => {
               </NavLink>
             </NavItem>
             <NavItem>
+              <NavLink href="/visualizar-investimentos" /* TODO INSERIR LINK*/> 
+                Investimentos
+              </NavLink>
+            </NavItem>
+            <NavItem>
               <NavLink href="" /* TODO INSERIR LINK*/>
                 Objetivos
               </NavLink>
