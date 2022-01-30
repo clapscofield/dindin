@@ -115,6 +115,15 @@ const LandingInstNavbar = (props) => {
               </Button>
             </NavItem>
             <NavItem>
+              <Button
+                className="nav-link d-none d-lg-block"
+                color="secondary"
+                href="/inserir-investimento"
+              > 
+                <i className="fa fa-chart-line" /> Inserir Investimento
+              </Button>
+            </NavItem>
+            <NavItem>
               <NavLink href="" /* TODO INSERIR LINK*/> 
                 Extrato
               </NavLink>

@@ -101,6 +101,7 @@ const PaginaInicial = (props) => {
               setSenha={setSenha}
               modalAberto={modalLoginAberto}
               setModalAberto={setModalLoginAberto}
+              id="loginModal"
             />
           </div>
         </div>

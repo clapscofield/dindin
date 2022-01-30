@@ -1,0 +1,8 @@
+{
+  "component": {
+    "componentFolder": "src",
+    "testFiles": "**/*spec.{js,jsx,ts,tsx}",
+    "nodeVersion": "bundled",
+    "include": ["src/**/*"]
+  }
+}
