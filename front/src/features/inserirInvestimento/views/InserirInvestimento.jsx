@@ -5,52 +5,31 @@ import Datetime from "react-datetime";
 import moment from "moment";
 import Footer from "components/Footer/Footer.js";
 import { connect } from "react-redux";
-import InserirGastoGanhoManager from "../InserirGastoGanhoManager";
+import InvestimentoManager from "../InvestimentoManager";
 
 const InserirInvestimento = (props) => {
   const { usuarioInstituicao } = props;
 
   const [redirecionar, setRedirecionar] = useState(null);
 
-  const [valorGanho, setValorGanho] = useState(null);
-  const [dataGanho, setDataGanho] = useState(null);
-  const [categoriaGanho, setCategoriaGanho] = useState(null);
-  const [descricaoGanho, setDescricaoGanho] = useState(null);
-
   const [valor, setValor] = useState(null);
   const [data, setData] = useState(null);
   const [categoria, setCategoria] = useState(null);
   const [descricao, setDescricao] = useState(null);
 
-  const inserirGasto = async () => {
-    const gasto = {
+  const inserirInvestimento = async () => {
+    const investimento = {
       data: moment(data).format("DD/MM/YYYY"),
       categoria: categoria,
       valor: valor,
       descricao: descricao,
       usuario: usuarioInstituicao,
-      tipo: "saida"
+      tipo: "investimento"
     };
 
-    const resultado = await InserirGastoGanhoManager.inserirGasto(gasto);
-
-    if (resultado) {
-      console.log("Criado com sucesso");
-      setRedirecionar(<Redirect to={"/landing-usuario"} />);
-    }
-  };
-
-  const inserirGanho = async () => {
-    const ganho = {
-      data: moment(dataGanho).format("DD/MM/YYYY"),
-      categoria: categoriaGanho,
-      valor: valorGanho,
-      descricao: descricaoGanho,
-      usuario: usuarioInstituicao,
-      tipo: "entrada"
-    };
-
-    const resultado = await InserirGastoGanhoManager.inserirGanho(ganho);
+    const resultado = await InvestimentoManager.inserirInvestimento(
+      investimento
+    );
 
     if (resultado) {
       console.log("Criado com sucesso");
@@ -75,70 +54,13 @@ const InserirInvestimento = (props) => {
             <Container>
               <Row>
                 <Col>
-                  <h1 className="title">Novo Ganho</h1>
-                  <Form className="form">
-                    <Row>
-                      <Col>
-                        <Input
-                          value={valorGanho}
-                          placeholder="Inserir valor"
-                          type="text"
-                          onChange={(e) => setValorGanho(e.target.value)}
-                          className={"mb-4"}
-                        />
-                      </Col>
-                      <Col className={"mb-4"}>
-                        <Datetime
-                          value={dataGanho}
-                          timeFormat={false}
-                          inputProps={{ placeholder: "Data" }}
-                          dateFormat={"DD/MM/YYYY"}
-                          onChange={(e) => setDataGanho(e)}
-                          isValidDate={validaData}
-                        />
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col className={"mb-4"}>
-                        <Input
-                          value={categoria}
-                          placeholder="Categoria"
-                          type="text"
-                          onChange={(e) => setCategoriaGanho(e.target.value)}
-                          className={"mb-4"}
-                        />
-                      </Col>
-                      <Col className={"mb-4"}>
-                        <Input
-                          value={descricaoGanho}
-                          placeholder="Descrição"
-                          type="text"
-                          onChange={(e) => setDescricaoGanho(e.target.value)}
-                          className={"mb-4"}
-                        />
-                      </Col>
-                    </Row>
-                    <Button
-                      size="sm"
-                      className="btn-round mb-4"
-                      color="primary"
-                      type="button"
-                      onClick={inserirGanho}
-                    >
-                      Inserir ganho
-                    </Button>
-                  </Form>
-                </Col>
-              </Row>
-              <Row>
-                <Col>
-                  <h1 className="title">Novo Gasto</h1>
+                  <h1 className="title">Novo Investimento</h1>
                   <Form className="form">
                     <Row>
                       <Col>
                         <Input
                           value={valor}
-                          placeholder="Inserir valor"
+                          placeholder="Inserir valor investido"
                           type="text"
                           onChange={(e) => setValor(e.target.value)}
                           className={"mb-4"}
@@ -159,7 +81,7 @@ const InserirInvestimento = (props) => {
                       <Col className={"mb-4"}>
                         <Input
                           value={categoria}
-                          placeholder="Categoria"
+                          placeholder="Categoria de investimento"
                           type="text"
                           onChange={(e) => setCategoria(e.target.value)}
                           className={"mb-4"}
@@ -180,9 +102,9 @@ const InserirInvestimento = (props) => {
                       className="btn-round mb-4"
                       color="primary"
                       type="button"
-                      onClick={inserirGasto}
+                      onClick={inserirInvestimento}
                     >
-                      Inserir gasto
+                      Inserir investimento
                     </Button>
                   </Form>
                 </Col>

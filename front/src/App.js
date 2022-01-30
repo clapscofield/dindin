@@ -9,7 +9,7 @@ import PaginaInicial from "features/paginaInicial";
 import CadastroUsuario from "features/cadastroUsuario";
 import LandingUsuario from "features/landingUsuario";
 import InserirGastoGanho from "features/inserirGastoGanho";
-
+import InserirInvestimento from "features/inserirInvestimento";
 
 const App = props => {
   return (
@@ -19,6 +19,7 @@ const App = props => {
         <Route path="/cadastro-usuario" render={(props) => <CadastroUsuario {...props} />} />
         <Route path="/landing-usuario" render={(props) => <LandingUsuario {...props} />} />
         <Route path="/inserir-gasto-ganho" render={(props) => <InserirGastoGanho {...props} />} />
+        <Route path="/inserir-investimento" render={(props) => <InserirInvestimento {...props} />} />
         <Redirect from="/" to="/pagina-inicial" />
       </Switch>
     </Router>
