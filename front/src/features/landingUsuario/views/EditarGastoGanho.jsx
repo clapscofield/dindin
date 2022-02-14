@@ -1,40 +1,19 @@
 import React, { useState, useEffect } from "react";
-import {
-  Button,
-  Form,
-  Input,
-  FormGroup,
-  InputGroup,
-  InputGroupAddon,
-  InputGroupText,
-  Modal,
-  Alert
-} from "reactstrap";
+import { Button, Form, Input, FormGroup, InputGroup, InputGroupAddon, InputGroupText, Modal, Alert } from "reactstrap";
 import classnames from "classnames";
 import { connect } from "react-redux";
-import { Redirect, useHistory } from "react-router-dom";
 import Datetime from "react-datetime";
 import InserirGastoGanhoManager from "features/inserirGastoGanho/InserirGastoGanhoManager";
 import { setMessage } from "../../../redux/actionCreators";
-import { clearMessage } from "../../../redux/actionCreators";
 import moment from "moment";
 
 const EditarModal = (props) => {
-  const {
-    message,
-    setMessageRedux,
-    clearMessageRedux,
-    modalAberto,
-    setModalAberto,
-    dadosTransacao,
-    setDadosTransacao
-  } = props;
+  const { message, setMessageRedux, modalAberto, setModalAberto, dadosTransacao, setDadosTransacao } = props;
 
-  const history = useHistory();
   const [valorFocus, setValorFocus] = useState(false);
   const [descricaoFocus, setDescricaoFocus] = useState(false);
   const [categoriaFocus, setCategoriaFocus] = useState(false);
-  const [dataFocus, setDataFocus] = useState(false);
+  //const [dataFocus, setDataFocus] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const [sucesso, setSucesso] = useState(false);
@@ -70,11 +49,7 @@ const EditarModal = (props) => {
         async (error) => {
           console.log("erro");
           const erro =
-            (error.response &&
-              error.response.data &&
-              error.response.data.status) ||
-            error.status ||
-            error.toString();
+            (error.response && error.response.data && error.response.data.status) || error.status || error.toString();
           console.log(erro);
           setSucesso(false);
           mensagem = erro;
@@ -88,11 +63,7 @@ const EditarModal = (props) => {
   };
 
   return (
-    <Modal
-      modalClassName="modal-black"
-      isOpen={modalAberto}
-      toggle={() => setModalAberto(false)}
-    >
+    <Modal modalClassName="modal-black" isOpen={modalAberto} toggle={() => setModalAberto(false)}>
       <div className="modal-header justify-content-center">
         <button className="close" onClick={() => setModalAberto(false)}>
           <i className="tim-icons icon-simple-remove text-white" />
@@ -184,21 +155,14 @@ const EditarModal = (props) => {
               </InputGroup>
             </FormGroup>
             <FormGroup className="mb-3">
-              <InputGroup
-                className={classnames("input-group-alternative", {
-                  "input-group-focus": dataFocus
-                })}
-              >
+              <InputGroup className={classnames("input-group-alternative")}>
                 <InputGroupAddon addonType="prepend">
                   <InputGroupText>
                     <i className="tim-icons icon-badge" />
                   </InputGroupText>
                 </InputGroupAddon>
                 <Datetime
-                  value={
-                    dadosTransacao &&
-                    moment(dadosTransacao.data).format("DD/MM/YYYY")
-                  }
+                  value={dadosTransacao && moment(dadosTransacao.data).format("DD/MM/YYYY")}
                   timeFormat={false}
                   inputProps={{ placeholder: "Data" }}
                   dateFormat={"DD/MM/YYYY"}
@@ -220,18 +184,12 @@ const EditarModal = (props) => {
               disabled={loading}
               onClick={() => handleSalvarAlteracoes()}
             >
-              {loading && (
-                <span className="spinner-border spinner-border-sm"></span>
-              )}
+              {loading && <span className="spinner-border spinner-border-sm"></span>}
               Salvar alterações
             </Button>
           </div>
           {message && sucesso && (
-            <Alert
-              color={"success"}
-              isOpen={alertaAberto}
-              toggle={() => setAlertaAberto(false)}
-            >
+            <Alert color={"success"} isOpen={alertaAberto} toggle={() => setAlertaAberto(false)}>
               <span>{message}</span>
             </Alert>
           )}
@@ -249,8 +207,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  setMessageRedux: (message) => dispatch(setMessage(message)),
-  clearMessageRedux: () => dispatch(clearMessage())
+  setMessageRedux: (message) => dispatch(setMessage(message))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditarModal);
