@@ -47,18 +47,8 @@ const CadastroInstituicao = (props) => {
   const [sucesso, setSucesso] = useState(false);
 
   useEffect(() => {
-    setBotaoHabilitado(
-      nome && descricao && login && email && senha && termosCondicoes
-    );
-  }, [
-    setBotaoHabilitado,
-    nome,
-    descricao,
-    login,
-    email,
-    senha,
-    termosCondicoes
-  ]);
+    setBotaoHabilitado(nome && descricao && login && email && senha && termosCondicoes);
+  }, [setBotaoHabilitado, nome, descricao, login, email, senha, termosCondicoes]);
 
   const cadastrarInstituicao = async () => {
     const usuario = {
@@ -95,20 +85,8 @@ const CadastroInstituicao = (props) => {
   const followCursor = (event) => {
     let posX = event.clientX - window.innerWidth / 2;
     let posY = event.clientY - window.innerWidth / 6;
-    setSquares1to6(
-      "perspective(500px) rotateY(" +
-        posX * 0.05 +
-        "deg) rotateX(" +
-        posY * -0.05 +
-        "deg)"
-    );
-    setSquares7and8(
-      "perspective(500px) rotateY(" +
-        posX * 0.02 +
-        "deg) rotateX(" +
-        posY * -0.02 +
-        "deg)"
-    );
+    setSquares1to6("perspective(500px) rotateY(" + posX * 0.05 + "deg) rotateX(" + posY * -0.05 + "deg)");
+    setSquares7and8("perspective(500px) rotateY(" + posX * 0.02 + "deg) rotateX(" + posY * -0.02 + "deg)");
   };
 
   return (
@@ -121,26 +99,17 @@ const CadastroInstituicao = (props) => {
             <Container>
               <Row>
                 <Col className="offset-lg-0 offset-md-3" lg="5" md="6">
-                  <div
-                    className="square square-7"
-                    id="square7"
-                    style={{ transform: squares7and8 }}
-                  />
-                  <div
-                    className="square square-8"
-                    id="square8"
-                    style={{ transform: squares7and8 }}
-                  />
+                  <div className="square square-7" id="square7" style={{ transform: squares7and8 }} />
+                  <div className="square square-8" id="square8" style={{ transform: squares7and8 }} />
                   <Card className="card-register">
                     <CardHeader>
-                      <CardImg
-                        alt="..."
-                        src={require("assets/img/square-purple-1.png").default}
-                      />
-                      <CardTitle tag="h4">Registro</CardTitle>
+                      <CardImg alt="..." src={require("assets/img/square-purple-1.png").default} />
+                      <CardTitle tag="h4" id="tituloCadastro">
+                        Registro
+                      </CardTitle>
                     </CardHeader>
                     <CardBody>
-                      <Form className="form">
+                      <Form className="form" id="formularioCadastro">
                         <InputGroup
                           className={classnames({
                             "input-group-focus": fullNameFocus
@@ -239,21 +208,12 @@ const CadastroInstituicao = (props) => {
                         </InputGroup>
                         <FormGroup check className="text-left">
                           <Label check>
-                            <Input
-                              type="checkbox"
-                              onChange={(e) =>
-                                setTermosCondicoes(e.target.checked)
-                              }
-                            />
+                            <Input type="checkbox" onChange={(e) => setTermosCondicoes(e.target.checked)} />
                             <span className="form-check-sign" />
                             Concordo com os{" "}
-                            <a
-                              href="#pablo"
-                              onClick={(e) => e.preventDefault()}
-                            >
+                            <a href="#pablo" onClick={(e) => e.preventDefault()}>
                               termos e condições
                             </a>
-                            .
                           </Label>
                         </FormGroup>
                       </Form>
@@ -264,6 +224,7 @@ const CadastroInstituicao = (props) => {
                         color="primary"
                         size="lg"
                         disabled={!botaoHabilitado}
+                        id="botaoCadastro"
                         onClick={() => cadastrarInstituicao()}
                       >
                         Começar
@@ -285,36 +246,12 @@ const CadastroInstituicao = (props) => {
                 </Col>
               </Row>
               <div className="register-bg" />
-              <div
-                className="square square-1"
-                id="square1"
-                style={{ transform: squares1to6 }}
-              />
-              <div
-                className="square square-2"
-                id="square2"
-                style={{ transform: squares1to6 }}
-              />
-              <div
-                className="square square-3"
-                id="square3"
-                style={{ transform: squares1to6 }}
-              />
-              <div
-                className="square square-4"
-                id="square4"
-                style={{ transform: squares1to6 }}
-              />
-              <div
-                className="square square-5"
-                id="square5"
-                style={{ transform: squares1to6 }}
-              />
-              <div
-                className="square square-6"
-                id="square6"
-                style={{ transform: squares1to6 }}
-              />
+              <div className="square square-1" id="square1" style={{ transform: squares1to6 }} />
+              <div className="square square-2" id="square2" style={{ transform: squares1to6 }} />
+              <div className="square square-3" id="square3" style={{ transform: squares1to6 }} />
+              <div className="square square-4" id="square4" style={{ transform: squares1to6 }} />
+              <div className="square square-5" id="square5" style={{ transform: squares1to6 }} />
+              <div className="square square-6" id="square6" style={{ transform: squares1to6 }} />
             </Container>
           </div>
         </div>

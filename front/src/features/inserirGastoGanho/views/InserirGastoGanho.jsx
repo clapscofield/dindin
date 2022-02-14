@@ -62,9 +62,7 @@ const InserirGastoGanho = (props) => {
   const validaData = (currentDate) => {
     var hoje = moment(new Date());
     var maxDate = moment("2023-01-01");
-    return (
-      currentDate.isBefore(moment(maxDate)) && currentDate.isAfter(moment(hoje))
-    );
+    return currentDate.isBefore(moment(maxDate)) && currentDate.isAfter(moment(hoje));
   };
 
   return (
@@ -102,7 +100,7 @@ const InserirGastoGanho = (props) => {
                     <Row>
                       <Col className={"mb-4"}>
                         <Input
-                          value={categoria}
+                          value={categoriaGanho}
                           placeholder="Categoria"
                           type="text"
                           onChange={(e) => setCategoriaGanho(e.target.value)}
@@ -119,13 +117,7 @@ const InserirGastoGanho = (props) => {
                         />
                       </Col>
                     </Row>
-                    <Button
-                      size="sm"
-                      className="btn-round mb-4"
-                      color="primary"
-                      type="button"
-                      onClick={inserirGanho}
-                    >
+                    <Button size="sm" className="btn-round mb-4" color="primary" type="button" onClick={inserirGanho}>
                       Inserir ganho
                     </Button>
                   </Form>
@@ -176,13 +168,7 @@ const InserirGastoGanho = (props) => {
                         />
                       </Col>
                     </Row>
-                    <Button
-                      size="sm"
-                      className="btn-round mb-4"
-                      color="primary"
-                      type="button"
-                      onClick={inserirGasto}
-                    >
+                    <Button size="sm" className="btn-round mb-4" color="primary" type="button" onClick={inserirGasto}>
                       Inserir gasto
                     </Button>
                   </Form>

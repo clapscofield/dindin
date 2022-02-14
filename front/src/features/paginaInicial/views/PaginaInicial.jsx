@@ -24,36 +24,12 @@ const PaginaInicial = (props) => {
       <ExamplesNavbar />
       <div className="wrapper">
         <div className="page-header">
-          <img
-            alt="..."
-            className="path"
-            src={require("assets/img/blob.png").default}
-          />
-          <img
-            alt="..."
-            className="path2"
-            src={require("assets/img/path2.png").default}
-          />
-          <img
-            alt="..."
-            className="shapes triangle"
-            src={require("assets/img/triunghiuri.png").default}
-          />
-          <img
-            alt="..."
-            className="shapes wave"
-            src={require("assets/img/waves.png").default}
-          />
-          <img
-            alt="..."
-            className="shapes squares"
-            src={require("assets/img/patrat.png").default}
-          />
-          <img
-            alt="..."
-            className="shapes circle"
-            src={require("assets/img/cercuri.png").default}
-          />
+          <img alt="..." className="path" src={require("assets/img/blob.png").default} />
+          <img alt="..." className="path2" src={require("assets/img/path2.png").default} />
+          <img alt="..." className="shapes triangle" src={require("assets/img/triunghiuri.png").default} />
+          <img alt="..." className="shapes wave" src={require("assets/img/waves.png").default} />
+          <img alt="..." className="shapes squares" src={require("assets/img/patrat.png").default} />
+          <img alt="..." className="shapes circle" src={require("assets/img/cercuri.png").default} />
           <div className="content-center">
             <Row className="row-grid justify-content-between align-items-center text-left">
               <Col lg="8" md="6">
@@ -61,11 +37,9 @@ const PaginaInicial = (props) => {
                   Aprenda a organizar seu <br />
                   <span className="text-white">dindin</span>
                 </h1>
-                <p className="text-white mb-3">
-                  A oportunidade de controlar suas finanças de forma prática
-                </p>
+                <p className="text-white mb-3">A oportunidade de controlar suas finanças de forma prática</p>
                 <div className="btn-wrapper mb-3">
-                  <p className="category text-success d-inline">
+                  <p className="category text-success d-inline" id="cadastro">
                     Entre na sua conta
                   </p>
                   <Button
@@ -78,17 +52,14 @@ const PaginaInicial = (props) => {
                     <i className="tim-icons icon-minimal-down" />
                   </Button>
                 </div>
-                <Button
-                  color="success"
-                  target="_blank"
-                  onClick={() => setModalLoginAberto(true)}
-                >
+                <Button color="success" target="_blank" onClick={() => setModalLoginAberto(true)} id="minhacarteira">
                   Minha carteira
                 </Button>
               </Col>
               <Col lg="4" md="5">
                 <img
                   alt="..."
+                  id="imagemLayout"
                   className="img-fluid"
                   src={require("assets/img/etherum.png").default}
                 />
@@ -107,11 +78,7 @@ const PaginaInicial = (props) => {
         </div>
         <section className="section section-lg">
           <section className="section">
-            <img
-              alt="..."
-              className="path"
-              src={require("assets/img/path4.png").default}
-            />
+            <img alt="..." className="path" src={require("assets/img/path4.png").default} />
           </section>
         </section>
       </div>

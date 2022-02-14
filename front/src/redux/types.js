@@ -1,14 +1,8 @@
 export const LOGIN = "LOGIN";
 
 //Equipes Types
-export const INSERIR_EQUIPE = "INSERIR_EQUIPE";
 export const INSERIR_GANHO = "INSERIR_GANHO";
 export const INSERIR_GASTO = "INSERIR_GASTO";
-
-//Login Types Estudante
-export const LOGIN_SUCCESS_ESTUDANTE = "LOGIN_SUCCESS_ESTUDANTE";
-export const LOGIN_FAIL_ESTUDANTE = "LOGIN_FAIL_ESTUDANTE";
-export const LOGOUT_ESTUDANTE = "LOGOUT_ESTUDANTE";
 
 
 //Login Types Instituicao

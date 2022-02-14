@@ -6,12 +6,6 @@ export const loginUsuario = (dados) => ({
   payload: dados
 })
 
-
-export const inserirEquipe = (equipes) => ({
-  type: types.INSERIR_EQUIPE,
-  payload: equipes
-})
-
 export const inserirGanho = (entrada) => ({
   type: types.INSERIR_GANHO,
   payload: entrada
