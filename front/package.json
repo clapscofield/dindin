@@ -76,7 +76,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build && gulp licenses",
-    "test": "react-scripts test",
+    "test": "react-scripts test --testPathIgnorePatterns=src/selenium-ui-tests",
     "test-inicio": "mocha --timeout 10000 ./src/selenium-ui-tests/PagInicial.test.js",
     "test-cadastro": "mocha --timeout 10000 ./src/selenium-ui-tests/CadastroUsuario.test.js",
     "eject": "react-scripts eject",
